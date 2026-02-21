@@ -21,6 +21,10 @@ namespace esphome::ld2450
                     conversion_factor_ = 0.001f;
                 else if ((strcmp(unit_of_measurement_, "cm") == 0))
                     conversion_factor_ = 0.1f;
+                else if ((strcmp(unit_of_measurement_, "in") == 0))
+                    conversion_factor_ = 0.0393701f;
+                else if ((strcmp(unit_of_measurement_, "ft") == 0))
+                    conversion_factor_ = 0.00328084f;
             }
         }
 
