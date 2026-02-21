@@ -76,6 +76,7 @@ CONF_TRACKING_MODE_SWITCH = "tracking_mode_switch"
 CONF_BLUETOOTH_SWITCH = "bluetooth_switch"
 CONF_BAUD_RATE_SELECT = "baud_rate_select"
 UNIT_METER_PER_SECOND = "m/s"
+UNIT_FEET_PER_SECOND = "f/s"
 ICON_ANGLE_ACUTE = "mdi:angle-acute"
 ICON_ACCOUNT_GROUP = "mdi:account-group"
 
@@ -98,7 +99,7 @@ UpdatePolygonAction = ld2450_ns.class_("UpdatePolygonAction", automation.Action)
 
 DISTANCE_SENSOR_SCHEMA = (
     sensor.sensor_schema(
-        unit_of_measurement=UNIT_METER,
+        unit_of_measurement=UNIT_FEET,
         accuracy_decimals=2,
         state_class=STATE_CLASS_MEASUREMENT,
         device_class=DEVICE_CLASS_DISTANCE,
@@ -107,7 +108,7 @@ DISTANCE_SENSOR_SCHEMA = (
     .extend(
         {
             cv.GenerateID(): cv.declare_id(PollingSensor),
-            cv.Optional(CONF_UNIT_OF_MEASUREMENT, default=UNIT_METER): cv.All(
+            cv.Optional(CONF_UNIT_OF_MEASUREMENT, default=UNIT_FEET): cv.All(
                 cv.one_of(UNIT_METER, UNIT_CENTIMETER, UNIT_INCH, UNIT_FEET),
             ),
         }
@@ -116,7 +117,7 @@ DISTANCE_SENSOR_SCHEMA = (
 
 SPEED_SENSOR_SCHEMA = (
     sensor.sensor_schema(
-        unit_of_measurement=UNIT_METER_PER_SECOND,
+        unit_of_measurement=UNIT_FEET_PER_SECOND,
         accuracy_decimals=0,
         state_class=STATE_CLASS_MEASUREMENT,
         device_class=DEVICE_CLASS_SPEED,
@@ -126,9 +127,9 @@ SPEED_SENSOR_SCHEMA = (
         {
             cv.GenerateID(): cv.declare_id(PollingSensor),
             cv.Optional(
-                CONF_UNIT_OF_MEASUREMENT, default=UNIT_METER_PER_SECOND
+                CONF_UNIT_OF_MEASUREMENT, default=UNIT_FEET_PER_SECOND
             ): cv.All(
-                cv.one_of(UNIT_METER_PER_SECOND),
+                cv.one_of(UNIT_METER_PER_SECOND, UNIT_FEET_PER_SECOND),
             ),
         }
     )
