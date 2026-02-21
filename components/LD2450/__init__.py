@@ -31,6 +31,8 @@ from esphome.const import (
     ICON_RESTART_ALERT,
     STATE_CLASS_MEASUREMENT,
     UNIT_CENTIMETER,
+	UNIT_INCH,
+	UNIT_FEET,
     UNIT_DEGREES,
     UNIT_METER,
 )
@@ -106,7 +108,7 @@ DISTANCE_SENSOR_SCHEMA = (
         {
             cv.GenerateID(): cv.declare_id(PollingSensor),
             cv.Optional(CONF_UNIT_OF_MEASUREMENT, default=UNIT_METER): cv.All(
-                cv.one_of(UNIT_METER, UNIT_CENTIMETER),
+                cv.one_of(UNIT_METER, UNIT_CENTIMETER, UNIT_INCH, UNIT_FEET),
             ),
         }
     )
