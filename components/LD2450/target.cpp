@@ -45,28 +45,29 @@ namespace esphome::ld2450
         y_ = y;
         speed_ = speed;
         resolution_ = resolution;
-
+    
         bool present = is_present();
-        // Update sub sensors
+        // Update sub sensors - Replaced NAN with 0
         if (x_position_sensor_ != nullptr)
-            x_position_sensor_->set_value(present ? x_ : NAN);
+            x_position_sensor_->set_value(present ? x_ : 0); // Changed NAN to 0
         if (y_position_sensor_ != nullptr)
-            y_position_sensor_->set_value(present ? y_ : NAN);
+            y_position_sensor_->set_value(present ? y_ : 0); // Changed NAN to 0
         if (speed_sensor_ != nullptr)
-            speed_sensor_->set_value(present ? speed_ : NAN);
+            speed_sensor_->set_value(present ? speed_ : 0); // Changed NAN to 0
         if (distance_resolution_sensor_ != nullptr)
-            distance_resolution_sensor_->set_value(present ? resolution_ : NAN);
+            distance_resolution_sensor_->set_value(present ? resolution_ : 0); // Changed NAN to 0
         if (angle_sensor_ != nullptr)
         {
             float angle = atan2(y, x) * (180 / M_PI) - 90;
-            angle_sensor_->set_value(present ? -angle : NAN);
+            angle_sensor_->set_value(present ? -angle : 0); // Changed NAN to 0
         }
         if (distance_sensor_ != nullptr)
         {
             float distance = sqrt(x_ * x_ + y_ * y_);
-            distance_sensor_->set_value(present ? distance : NAN);
+            distance_sensor_->set_value(present ? distance : 0); // Changed NAN to 0
         }
     }
+
 
     bool Target::is_present()
     {
